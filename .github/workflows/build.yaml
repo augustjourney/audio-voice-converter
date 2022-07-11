@@ -15,10 +15,7 @@ jobs:
           SELECTEL_PASSWORD: ${{ secrets.SELECTEL_PASSWORD }}
         run: |
           touch .env
-
-          echo BOT_TOKEN=$BOT_TOKEN >> .env
           echo ENV="prod" >> .env
-          echo DB_URL=$DB_URL >> .env
           echo SELECTEL_USER=$SELECTEL_USER >> .env
           echo SELECTEL_PASSWORD=$SELECTEL_PASSWORD >> .env
 
