@@ -3,7 +3,7 @@ from src.config import Config as config
 from src.voice import VoiceConvering
 
 router = APIRouter(
-    prefix="helpers",
+    prefix="/helpers",
     tags=["helpers"],
     responses={404: {"description": "Not found"}},
 )
