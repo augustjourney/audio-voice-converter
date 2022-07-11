@@ -1,0 +1,27 @@
+name: Build
+on:
+  pull_request:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          SELECTEL_USER: ${{ secrets.SELECTEL_USER }}
+          SELECTEL_PASSWORD: ${{ secrets.SELECTEL_PASSWORD }}
+        run: |
+          touch .env
+
+          echo BOT_TOKEN=$BOT_TOKEN >> .env
+          echo ENV="prod" >> .env
+          echo DB_URL=$DB_URL >> .env
+          echo SELECTEL_USER=$SELECTEL_USER >> .env
+          echo SELECTEL_PASSWORD=$SELECTEL_PASSWORD >> .env
+
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build -t $DOCKER_USERNAME/oye:helpers .
+          docker push $DOCKER_USERNAME/oye:helpers
