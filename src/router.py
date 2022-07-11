@@ -4,7 +4,7 @@ from src.voice import VoiceConvering
 
 router = APIRouter(
     prefix="",
-    tags=["bot"],
+    tags=["helpers"],
     responses={404: {"description": "Not found"}},
 )
 
