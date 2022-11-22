@@ -14,6 +14,7 @@ def hello():
 
 @router.post('/convert-voice', status_code=200)
 async def webhook(request:Request):
+    print('Request to convert-voice')
     data = await request.json()    
     container_name, object_name = data['container_name'], data['object_name']
     voice = VoiceConvering.convert_voice(container_name, object_name)
